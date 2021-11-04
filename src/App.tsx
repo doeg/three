@@ -36,9 +36,7 @@ const Shape = (props: any) => {
 
 export const App = () => {
   return (
-    <Canvas>
-      <fog attach="fog" args={["lightpink", 60, 100]} />
-
+    <Canvas camera={{ zoom: 2, position: [10, 8, 10] }}>
       <ambientLight intensity={0.5} />
       <spotLight position={[50, 50, -30]} castShadow />
       <pointLight position={[-10, -10, -10]} color="red" intensity={3} />
@@ -49,7 +47,7 @@ export const App = () => {
 
       <Shape position={[0, 1, 0]} />
 
-      <gridHelper args={[100, 1000, "#222", "#222"]} />
+      <gridHelper args={[100, 200, "#222", "#222"]} />
 
       <OrbitControls scale={1} />
     </Canvas>
