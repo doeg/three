@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
+
 import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 
 const Box = (props: any) => {
   const ref: any = useRef();
@@ -33,6 +35,7 @@ export const App = () => {
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Box position={[0, 0, 0]} />
+      <OrbitControls scale={1} />
     </Canvas>
   );
 };
