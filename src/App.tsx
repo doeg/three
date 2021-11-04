@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
-const Box = (props: any) => {
+const Shape = (props: any) => {
   const ref: any = useRef();
 
   const [hovered, hover] = useState(false);
@@ -22,9 +22,14 @@ const Box = (props: any) => {
       onClick={() => click(!clicked)}
       onPointerOver={() => hover(true)}
       onPointerOut={() => hover(false)}
+      receiveShadow
+      castShadow
     >
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
+      <sphereGeometry args={[1, 100, 100]} />
+      <meshPhysicalMaterial
+        color={hovered ? "orange" : "hotpink"}
+        roughness={0}
+      />
     </mesh>
   );
 };
@@ -32,9 +37,18 @@ const Box = (props: any) => {
 export const App = () => {
   return (
     <Canvas>
-      <ambientLight />
+      <fog attach="fog" args={["lightpink", 60, 100]} />
+
+      <ambientLight intensity={0.5} />
+      <spotLight position={[50, 50, -30]} castShadow />
+      <pointLight position={[-10, -10, -10]} color="red" intensity={3} />
+      <pointLight position={[0, -5, 5]} intensity={0.5} />
+      <directionalLight position={[0, -5, 0]} color="red" intensity={2} />
+
       <pointLight position={[10, 10, 10]} />
-      <Box position={[0, 0, 0]} />
+
+      <Shape position={[0, 0, 0]} />
+
       <OrbitControls scale={1} />
     </Canvas>
   );
