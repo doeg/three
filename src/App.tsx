@@ -47,7 +47,9 @@ export const App = () => {
 
       <pointLight position={[10, 10, 10]} />
 
-      <Shape position={[0, 0, 0]} />
+      <Shape position={[0, 1, 0]} />
+
+      <gridHelper args={[100, 1000, "#222", "#222"]} />
 
       <OrbitControls scale={1} />
     </Canvas>
